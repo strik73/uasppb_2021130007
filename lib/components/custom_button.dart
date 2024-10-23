@@ -11,10 +11,10 @@ class CustomButton extends StatelessWidget {
     return GestureDetector(
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.all(25),
+          padding: const EdgeInsets.all(15),
           margin: const EdgeInsets.symmetric(horizontal: 25.0),
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).colorScheme.primary,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Center(

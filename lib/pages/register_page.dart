@@ -55,7 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
             CustomTextField(
                 hintText: "Confirm Password",
                 icon: Icons.lock,
-                controller: _passwordController,
+                controller: _confirmPasswordController,
                 obscureText: true),
             const SizedBox(height: 25),
             CustomButton(text: "Daftar", onTap: () {}),

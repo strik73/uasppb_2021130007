@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uasppb_2021130007/components/custom_button.dart';
 import 'package:uasppb_2021130007/components/custom_textfield.dart';
+import 'package:uasppb_2021130007/pages/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.onTap});
@@ -15,6 +16,11 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  void login() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const HomePage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Icons.person,
+              Icons.food_bank,
               size: 100,
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
@@ -50,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _passwordController,
                 obscureText: true),
             const SizedBox(height: 25),
-            CustomButton(text: "Masuk", onTap: () {}),
+            CustomButton(text: "Masuk", onTap: login),
             const SizedBox(height: 25),
             //text register
             Row(
