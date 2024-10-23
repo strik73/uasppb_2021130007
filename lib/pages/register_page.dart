@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:uasppb_2021130007/components/custom_button.dart';
 import 'package:uasppb_2021130007/components/custom_textfield.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key, required this.onTap});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key, required this.onTap});
 
   final void Function()? onTap;
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +26,13 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Icons.person,
+              Icons.person_outline,
               size: 100,
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
             const SizedBox(height: 20),
             Text(
-              "Welcome to Food Order App",
+              "Buat Akun Baru",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -49,15 +51,21 @@ class _LoginPageState extends State<LoginPage> {
                 icon: Icons.lock,
                 controller: _passwordController,
                 obscureText: true),
+            const SizedBox(height: 10),
+            CustomTextField(
+                hintText: "Confirm Password",
+                icon: Icons.lock,
+                controller: _passwordController,
+                obscureText: true),
             const SizedBox(height: 25),
-            CustomButton(text: "Masuk", onTap: () {}),
+            CustomButton(text: "Daftar", onTap: () {}),
             const SizedBox(height: 25),
             //text register
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Belum punya akun?",
+                  "Sudah punya akun?",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary,
                   ),
@@ -66,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                 GestureDetector(
                   onTap: widget.onTap,
                   child: Text(
-                    "Daftar sekarang",
+                    "Masuk sekarang",
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.inversePrimary,
                       fontWeight: FontWeight.bold,
