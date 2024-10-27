@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:uasppb_2021130007/auth/login_or_register.dart';
 import 'package:uasppb_2021130007/components/custom_drawer_tile.dart';
+import 'package:uasppb_2021130007/pages/login_page.dart';
 import 'package:uasppb_2021130007/pages/settings_page.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -49,8 +51,10 @@ class CustomDrawer extends StatelessWidget {
               text: "Log Out",
               icon: Icons.logout,
               color: Theme.of(context).colorScheme.error,
-              onTap: () {}),
-
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const LoginOrRegister()))),
           const SizedBox(height: 20),
         ],
       ),
