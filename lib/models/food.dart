@@ -1,19 +1,17 @@
 class Food {
   Food({
     required this.name,
-    required this.image,
+    required this.imagePath,
     required this.price,
     required this.description,
     required this.category,
-    required this.availableAddons,
   });
 
   final String name;
-  final String image;
-  final String price;
+  final String imagePath;
+  final double price;
   final String description;
   final FoodCategory category;
-  List<Addon> availableAddons;
 }
 
 enum FoodCategory {

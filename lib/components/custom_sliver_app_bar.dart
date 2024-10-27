@@ -10,9 +10,9 @@ class CustomSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-        backgroundColor: Theme.of(context).colorScheme.surface,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
-        expandedHeight: 220,
+        expandedHeight: 240,
         collapsedHeight: 120,
         floating: false,
         pinned: true,
