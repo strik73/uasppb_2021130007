@@ -1,4 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:uasppb_2021130007/models/cart_item.dart';
 
 import 'food.dart';
 
@@ -90,4 +92,57 @@ class Resto extends ChangeNotifier {
 
 //getter
   List<Food> get menu => _menu;
+  List<CartItem> get cart => _cart;
+
+  //function add to cart
+  final List<CartItem> _cart = [];
+
+  void addToCart(Food food) {
+    CartItem? cartItem = _cart.firstWhereOrNull((item) {
+      bool isSameFood = item.food == food;
+      return isSameFood;
+    });
+
+    if (cartItem != null) {
+      cartItem.quantity++;
+    } else {
+      _cart.add(CartItem(food: food));
+    }
+    notifyListeners();
+  }
+
+  //function remove from cart
+  void removeFromCart(CartItem cartItem) {
+    int cartIndex = _cart.indexOf(cartItem);
+    if (cartIndex != -1) {
+      if (cartItem.quantity > 1) {
+        _cart[cartIndex].quantity--;
+      } else {
+        _cart.removeAt(cartIndex);
+      }
+      notifyListeners();
+    }
+  }
+
+  //getter
+  double getTotalPrice() {
+    double totalPrice = 0;
+    for (CartItem cartItem in _cart) {
+      totalPrice += cartItem.food.price * cartItem.quantity;
+    }
+    return totalPrice;
+  }
+
+  int getTotalQuantity() {
+    int totalQuantity = 0;
+    for (CartItem cartItem in _cart) {
+      totalQuantity += cartItem.quantity;
+    }
+    return totalQuantity;
+  }
+
+  void clearCart() {
+    _cart.clear();
+    notifyListeners();
+  }
 }

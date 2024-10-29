@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:uasppb_2021130007/components/custom_button.dart';
 import 'package:uasppb_2021130007/models/food.dart';
+import 'package:uasppb_2021130007/models/resto.dart';
+import 'package:provider/provider.dart';
 
 class FoodPage extends StatefulWidget {
   const FoodPage({super.key, required this.food});
@@ -18,6 +20,11 @@ class _FoodPageState extends State<FoodPage> {
     symbol: 'Rp ',
     decimalDigits: 0,
   );
+
+  void addToCart(Food food) {
+    context.read<Resto>().addToCart(food);
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +98,7 @@ class _FoodPageState extends State<FoodPage> {
                       ),
                       const SizedBox(height: 10),
                       CustomButton(
-                        onTap: () {},
+                        onTap: () => addToCart(widget.food),
                         text: "Add to Cart",
                       ),
                     ],

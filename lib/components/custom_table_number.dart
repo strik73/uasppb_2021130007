@@ -33,7 +33,7 @@ class CustomTableNumber extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Container(
-        margin: EdgeInsets.only(left: 50, right: 50),
+        margin: const EdgeInsets.only(left: 50, right: 50),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
           border: Border.all(
@@ -45,7 +45,7 @@ class CustomTableNumber extends StatelessWidget {
             BoxShadow(
               color: Colors.black.withOpacity(0.2),
               blurRadius: 5,
-              offset: Offset(0, 2),
+              offset: const Offset(0, 2),
             ),
           ],
         ),
