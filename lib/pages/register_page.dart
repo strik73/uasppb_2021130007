@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uasppb_2021130007/components/custom_button.dart';
 import 'package:uasppb_2021130007/components/custom_textfield.dart';
+import 'package:uasppb_2021130007/services/auth/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key, required this.onTap});
@@ -16,6 +17,40 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+
+  void register() async {
+    final _authService = AuthService();
+    if (_passwordController.text == _confirmPasswordController.text) {
+      try {
+        await _authService.signUp(
+          _emailController.text,
+          _passwordController.text,
+        );
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+          ),
+        );
+      }
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("Error"),
+          content: const Text("Password tidak sama"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +93,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 controller: _confirmPasswordController,
                 obscureText: true),
             const SizedBox(height: 25),
-            CustomButton(text: "Daftar", onTap: () {}),
+            CustomButton(text: "Daftar", onTap: register),
             const SizedBox(height: 25),
             //text register
             Row(

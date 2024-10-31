@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uasppb_2021130007/components/custom_button.dart';
 import 'package:uasppb_2021130007/components/custom_textfield.dart';
 import 'package:uasppb_2021130007/pages/home_page.dart';
+import 'package:uasppb_2021130007/services/auth/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.onTap});
@@ -16,9 +17,20 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void login() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const HomePage()));
+  void login() async {
+    final _authService = AuthService();
+    try {
+      await _authService.signIn(
+          _emailController.text, _passwordController.text);
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const HomePage()));
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString()),
+        ),
+      );
+    }
   }
 
   @override

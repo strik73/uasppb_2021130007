@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:uasppb_2021130007/auth/login_or_register.dart';
+import 'package:uasppb_2021130007/services/auth/auth_service.dart';
+// import 'package:uasppb_2021130007/services/auth/login_or_register.dart';
 import 'package:uasppb_2021130007/components/custom_drawer_tile.dart';
 import 'package:uasppb_2021130007/pages/settings_page.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
+
+  void logout() {
+    final authService = AuthService();
+    authService.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +53,11 @@ class CustomDrawer extends StatelessWidget {
           const Spacer(),
 
           CustomDrawerTile(
-              text: "Log Out",
-              icon: Icons.logout,
-              color: Theme.of(context).colorScheme.error,
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const LoginOrRegister()))),
+            text: "Log Out",
+            icon: Icons.logout,
+            color: Theme.of(context).colorScheme.error,
+            onTap: logout,
+          ),
           const SizedBox(height: 20),
         ],
       ),
