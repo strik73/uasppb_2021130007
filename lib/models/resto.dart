@@ -1,10 +1,18 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:uasppb_2021130007/models/cart_item.dart';
 
 import 'food.dart';
 
 class Resto extends ChangeNotifier {
+  String? customerName;
+
+  void setCustomerName(String name) {
+    customerName = name;
+    notifyListeners();
+  }
+
   //list makanan
   final List<Food> _menu = [
     Food(
@@ -90,9 +98,13 @@ class Resto extends ChangeNotifier {
     ),
   ];
 
-//getter
+  //ubah nomor meja
+  String _tableNumber = '1';
+
+  //getter
   List<Food> get menu => _menu;
   List<CartItem> get cart => _cart;
+  String get tableNumber => _tableNumber;
 
   //function add to cart
   final List<CartItem> _cart = [];
@@ -141,8 +153,54 @@ class Resto extends ChangeNotifier {
     return totalQuantity;
   }
 
+  //clear cart
   void clearCart() {
     _cart.clear();
     notifyListeners();
+  }
+
+  //ubah nomor meja
+  void setTableNumber(String tableNumber) {
+    _tableNumber = tableNumber;
+    notifyListeners();
+  }
+
+  //bon pembayaran
+  String displayBon() {
+    final bon = StringBuffer();
+    bon.writeln("Bukti Pembayaran");
+    bon.writeln("------------------------------------");
+    bon.writeln();
+
+    String formattedDate =
+        DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now());
+
+    bon.writeln(formattedDate);
+    bon.writeln();
+
+    if (customerName != null && customerName!.isNotEmpty) {
+      bon.writeln("Customer: $customerName");
+      bon.writeln("Table: $tableNumber");
+      bon.writeln();
+    }
+
+    bon.writeln("------------------------------------");
+
+    for (final item in _cart) {
+      bon.writeln(
+          "${item.quantity} x ${item.food.name} - ${_formatPrice(item.food.price)}");
+      bon.writeln();
+    }
+
+    bon.writeln("------------------------------------");
+    bon.writeln("");
+    bon.writeln("Total Items: ${getTotalQuantity()}");
+    bon.writeln("Total Price: ${_formatPrice(getTotalPrice())}");
+
+    return bon.toString();
+  }
+
+  String _formatPrice(double price) {
+    return "Rp. ${price.toStringAsFixed(2)}";
   }
 }

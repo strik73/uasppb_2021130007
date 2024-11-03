@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:uasppb_2021130007/models/resto.dart';
 
 class CustomTableNumber extends StatelessWidget {
   const CustomTableNumber({super.key});
 
   void openTableSearch(BuildContext context) {
+    final textController = TextEditingController();
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text("Nomor Meja"),
         content: TextField(
+          controller: textController,
           decoration: InputDecoration(
               hintText: "Masukan nomor meja...",
               hintStyle:
@@ -16,11 +20,17 @@ class CustomTableNumber extends StatelessWidget {
         ),
         actions: [
           MaterialButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              Navigator.pop(context);
+            },
             child: const Text("Cancel"),
           ),
           MaterialButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              String newTableNumber = textController.text;
+              context.read<Resto>().setTableNumber(newTableNumber);
+              Navigator.pop(context);
+            },
             child: const Text("OK"),
           ),
         ],
@@ -71,13 +81,16 @@ class CustomTableNumber extends StatelessWidget {
                   mainAxisSize:
                       MainAxisSize.min, // This helps keep the Row centered
                   children: [
-                    Text(
-                      "Table 1",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.inversePrimary,
-                      ),
-                    ),
+                    Consumer<Resto>(builder: (context, resto, child) {
+                      return Text(
+                        resto.tableNumber.toString(),
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    }),
                     Icon(
                       Icons.arrow_drop_down,
                       color: Theme.of(context).colorScheme.inversePrimary,
