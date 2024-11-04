@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uasppb_2021130007/firebase_options.dart';
 import 'package:uasppb_2021130007/models/resto.dart';
-import 'package:uasppb_2021130007/services/auth_gate.dart';
+import 'package:uasppb_2021130007/services/auth/auth_gate.dart';
 import 'package:uasppb_2021130007/themes/theme_provide.dart';
 
 void main() async {

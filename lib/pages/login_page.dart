@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uasppb_2021130007/components/custom_button.dart';
 import 'package:uasppb_2021130007/components/custom_textfield.dart';
-import 'package:uasppb_2021130007/pages/home_page.dart';
+import 'package:uasppb_2021130007/pages/admin_page.dart';
+import 'package:uasppb_2021130007/pages/chef_page.dart';
 import 'package:uasppb_2021130007/services/auth/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
@@ -22,8 +23,26 @@ class _LoginPageState extends State<LoginPage> {
     try {
       await _authService.signIn(
           _emailController.text, _passwordController.text);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomePage()));
+
+      //get user role
+      String userRole = await _authService.getUserRole();
+
+      if (!mounted) return;
+
+      switch (userRole) {
+        case 'admin':
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const AdminPage()));
+          break;
+        case 'chef':
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const ChefPage()));
+          break;
+        default:
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Invalid user role')),
+          );
+      }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -55,7 +74,6 @@ class _LoginPageState extends State<LoginPage> {
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
             ),
-            //textfield email & password
             const SizedBox(height: 20),
             CustomTextField(
                 hintText: "Email",
@@ -70,7 +88,6 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 25),
             CustomButton(text: "Masuk", onTap: login),
             const SizedBox(height: 25),
-            //text register
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
