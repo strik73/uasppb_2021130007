@@ -18,8 +18,7 @@ class _OrderPageState extends State<OrderPage> {
   void initState() {
     super.initState();
 
-    String bon = context.read<Resto>().displayBon();
-    firestoreService.saveOrder(bon);
+    firestoreService.saveOrder(context.read<Resto>());
   }
 
   @override
