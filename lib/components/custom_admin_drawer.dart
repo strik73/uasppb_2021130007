@@ -4,13 +4,18 @@ import 'package:uasppb_2021130007/pages/admin_page.dart';
 import 'package:uasppb_2021130007/services/auth/auth_service.dart';
 import 'package:uasppb_2021130007/components/custom_drawer_tile.dart';
 import 'package:uasppb_2021130007/pages/settings_page.dart';
+import 'package:uasppb_2021130007/services/auth/login_or_register.dart';
 
 class CustomAdminDrawer extends StatelessWidget {
   const CustomAdminDrawer({super.key});
 
-  void logout() {
+  void logout(BuildContext context) async {
     final authService = AuthService();
     authService.signOut();
+
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => const LoginOrRegister()),
+    );
   }
 
   @override
@@ -83,7 +88,7 @@ class CustomAdminDrawer extends StatelessWidget {
             text: "Log Out",
             icon: Icons.logout,
             color: Theme.of(context).colorScheme.error,
-            onTap: logout,
+            onTap: () => logout(context),
           ),
           const SizedBox(height: 20),
         ],
