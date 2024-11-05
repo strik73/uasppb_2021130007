@@ -40,7 +40,7 @@ class AdminPage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.secondary,
                 child: ListTile(
                   title: Text(
-                    'Order #${orders[index].id}',
+                    'ORDER #${orders[index].id}',
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   subtitle: Column(
