@@ -60,14 +60,17 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.food_bank,
-              size: 100,
-              color: Theme.of(context).colorScheme.inversePrimary,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: Image.asset(
+                'lib/images/decafe.jpg',
+                width: 100,
+                height: 100,
+              ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             Text(
-              "Welcome to Food Order App",
+              "Welcome to De'Cafe!",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
