@@ -19,6 +19,7 @@ class FirestoreService {
           .toList(),
       'totalItems': resto.getTotalQuantity(),
       'totalPrice': resto.getTotalPrice(),
+      'status': 'Pending',
     });
   }
 }

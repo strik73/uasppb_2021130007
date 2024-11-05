@@ -187,8 +187,9 @@ class Resto extends ChangeNotifier {
     bon.writeln("------------------------------------");
 
     for (final item in _cart) {
+      double foodTotalPrice = item.quantity * item.food.price;
       bon.writeln(
-          "${item.quantity} x ${item.food.name} - ${_formatPrice(item.food.price)}");
+          "${item.quantity} x ${item.food.name} - ${_formatPrice(foodTotalPrice)}");
       bon.writeln();
     }
 
@@ -201,6 +202,8 @@ class Resto extends ChangeNotifier {
   }
 
   String _formatPrice(double price) {
-    return "Rp. ${price.toStringAsFixed(2)}";
+    return NumberFormat.currency(
+            locale: 'id_ID', symbol: 'Rp.', decimalDigits: 2)
+        .format(price);
   }
 }
