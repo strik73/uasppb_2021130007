@@ -2,15 +2,15 @@
 
 Aplikasi UAS PPB "De'Cafe"
 
-Login User:
-Email = yefta@mail.com
-Password = yefta123
-Login Kasir:
-Email = admin@mail.com
-Password = admin123
-Login Chef:
-Email = chef@mail.com
-Password = chef123
+Login User: <br />
+Email = yefta@mail.com<br />
+Password = yefta123<br />
+Login Kasir:<br />
+Email = admin@mail.com<br />
+Password = admin123<br />
+Login Chef:<br />
+Email = chef@mail.com<br />
+Password = chef123<br />
 
 ## Getting Started
 
