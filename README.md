@@ -1,6 +1,16 @@
 # uasppb_2021130007
 
-A new Flutter project.
+Aplikasi UAS PPB "De'Cafe"
+
+Login User:
+Email = yefta@mail.com
+Password = yefta123
+Login Kasir:
+Email = admin@mail.com
+Password = admin123
+Login Chef:
+Email = chef@mail.com
+Password = chef123
 
 ## Getting Started
 
