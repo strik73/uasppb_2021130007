@@ -26,13 +26,24 @@ class CustomAdminDrawer extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 40.0),
-            child: Text(
-              "Admin Panel",
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).colorScheme.inversePrimary,
-              ),
+            child: Column(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: Image.asset(
+                    'lib/images/decafe.jpg',
+                    height: 100,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  "Admin Panel",
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.inversePrimary),
+                ),
+              ],
             ),
           ),
           Padding(

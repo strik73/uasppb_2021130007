@@ -24,8 +24,13 @@ class CustomDrawer extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 40.0),
-            child: Icon(Icons.food_bank,
-                size: 90, color: Theme.of(context).colorScheme.inversePrimary),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: Image.asset(
+                'lib/images/decafe.jpg',
+                height: 120,
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(25.0),
