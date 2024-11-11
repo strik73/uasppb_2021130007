@@ -22,7 +22,7 @@ class FoodTile extends StatelessWidget {
           onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.only(
-                top: 12.0, left: 8.0, right: 8.0, bottom: 12.0),
+                top: 12.0, left: 12.0, right: 12.0, bottom: 12.0),
             child: Row(
               children: [
                 //gambar makanan
@@ -75,6 +75,7 @@ class FoodTile extends StatelessWidget {
           color: Theme.of(context).colorScheme.tertiary,
           indent: 15,
           endIndent: 15,
+          thickness: 1,
         ),
       ],
     );

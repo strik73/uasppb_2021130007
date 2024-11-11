@@ -27,7 +27,10 @@ class CustomSliverAppBar extends StatelessWidget {
                 ),
               );
             },
-            icon: const Icon(Icons.shopping_cart),
+            icon: Icon(
+              Icons.shopping_cart,
+              color: Theme.of(context).colorScheme.inversePrimary,
+            ),
           ),
         ],
         title: Text("Food Order App"),

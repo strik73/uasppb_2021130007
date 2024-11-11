@@ -69,7 +69,7 @@ class _FoodPageState extends State<FoodPage> {
                         widget.food.description,
                         style: TextStyle(
                           fontSize: 16,
-                          color: Theme.of(context).colorScheme.inversePrimary,
+                          color: Theme.of(context).colorScheme.tertiary,
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -83,7 +83,7 @@ class _FoodPageState extends State<FoodPage> {
                         "Price",
                         style: TextStyle(
                             fontSize: 16,
-                            color: Theme.of(context).colorScheme.tertiary,
+                            color: Theme.of(context).colorScheme.inversePrimary,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(

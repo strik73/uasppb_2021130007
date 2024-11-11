@@ -3,6 +3,7 @@ import 'package:uasppb_2021130007/components/custom_button.dart';
 import 'package:uasppb_2021130007/components/custom_textfield.dart';
 import 'package:uasppb_2021130007/pages/admin_page.dart';
 import 'package:uasppb_2021130007/pages/chef_page.dart';
+import 'package:uasppb_2021130007/pages/home_page.dart';
 import 'package:uasppb_2021130007/services/auth/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
@@ -37,6 +38,10 @@ class _LoginPageState extends State<LoginPage> {
         case 'chef':
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => const ChefPage()));
+          break;
+        case 'user':
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const HomePage()));
           break;
         default:
           ScaffoldMessenger.of(context).showSnackBar(

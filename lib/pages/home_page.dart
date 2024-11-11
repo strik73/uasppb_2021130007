@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage>
                 Divider(
                   indent: 25,
                   endIndent: 25,
-                  color: Theme.of(context).colorScheme.tertiary,
+                  color: Theme.of(context).colorScheme.inversePrimary,
                   thickness: 2,
                 ),
                 //table number

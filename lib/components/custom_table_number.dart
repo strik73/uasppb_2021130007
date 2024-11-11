@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:uasppb_2021130007/models/resto.dart';
 
@@ -13,6 +14,8 @@ class CustomTableNumber extends StatelessWidget {
         title: const Text("Nomor Meja"),
         content: TextField(
           controller: textController,
+          keyboardType: TextInputType.number,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           decoration: InputDecoration(
               hintText: "Masukan nomor meja...",
               hintStyle:
@@ -66,7 +69,7 @@ class CustomTableNumber extends StatelessWidget {
             Text(
               "Table Number",
               style: TextStyle(
-                  color: Theme.of(context).colorScheme.tertiary,
+                  color: Theme.of(context).colorScheme.inversePrimary,
                   fontWeight: FontWeight.bold),
             ),
             Divider(

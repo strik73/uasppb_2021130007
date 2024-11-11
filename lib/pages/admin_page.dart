@@ -53,9 +53,41 @@ class AdminPage extends StatelessWidget {
                         'Order Date: ${order['orderDate'] != null ? DateFormat('HH:mm:ss, dd-MM-yyyy').format((order['orderDate'] as Timestamp).toDate()) : 'N/A'}',
                       ),
                       const SizedBox(height: 8),
-                      Text(
-                        'Status: ${order['status'] ?? 'N/A'}',
-                        style: TextStyle(color: Colors.grey.shade500),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: order['status'] == 'Approved'
+                              ? Colors.yellow.shade700.withOpacity(0.2)
+                              : order['status'] == 'Rejected'
+                                  ? Colors.red.withOpacity(0.2)
+                                  : order['status'] == 'Completed'
+                                      ? Colors.green.withOpacity(0.2)
+                                      : Colors.grey.shade500.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: order['status'] == 'Approved'
+                                ? Colors.yellow.shade800
+                                : order['status'] == 'Rejected'
+                                    ? Colors.red
+                                    : order['status'] == 'Completed'
+                                        ? Colors.green
+                                        : Colors.grey.shade700,
+                          ),
+                        ),
+                        child: Text(
+                          'Status: ${order['status'] ?? 'N/A'}',
+                          style: TextStyle(
+                            color: order['status'] == 'Approved'
+                                ? Colors.yellow.shade800
+                                : order['status'] == 'Rejected'
+                                    ? Colors.red
+                                    : order['status'] == 'Completed'
+                                        ? Colors.green
+                                        : Colors.grey.shade700,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ],
                   ),
