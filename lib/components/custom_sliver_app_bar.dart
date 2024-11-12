@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:uasppb_2021130007/models/resto.dart';
 import 'package:uasppb_2021130007/pages/cart_page.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
@@ -18,18 +20,28 @@ class CustomSliverAppBar extends StatelessWidget {
         floating: false,
         pinned: true,
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const CartPage(),
-                ),
-              );
-            },
-            icon: Icon(
-              Icons.shopping_cart,
-              color: Theme.of(context).colorScheme.inversePrimary,
+          Consumer<Resto>(
+            builder: (context, resto, child) => IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CartPage(),
+                  ),
+                );
+              },
+              icon: resto.cart.isEmpty
+                  ? Icon(
+                      Icons.shopping_cart,
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    )
+                  : Badge.count(
+                      count: resto.cart.length,
+                      child: Icon(
+                        Icons.shopping_cart,
+                        color: Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                    ),
             ),
           ),
         ],
