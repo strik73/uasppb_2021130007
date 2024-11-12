@@ -27,7 +27,7 @@ class _AdminHistoryPageState extends State<AdminHistoryPage> {
             padding: const EdgeInsets.all(16.0),
             child: TextField(
               decoration: InputDecoration(
-                hintText: 'Search order',
+                hintText: 'Search by name or order ID',
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
