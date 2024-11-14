@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:uasppb_2021130007/pages/home_page.dart';
+import 'package:uasppb_2021130007/pages/my_order_page.dart';
 import 'package:uasppb_2021130007/services/auth/auth_service.dart';
 import 'package:uasppb_2021130007/components/custom_drawer_tile.dart';
 import 'package:uasppb_2021130007/pages/settings_page.dart';
@@ -44,7 +46,21 @@ class CustomDrawer extends StatelessWidget {
             text: "Home",
             icon: Icons.home,
             color: Theme.of(context).colorScheme.inversePrimary,
-            onTap: () => Navigator.pop(context),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const HomePage()));
+            },
+          ),
+          CustomDrawerTile(
+            text: "My Orders",
+            icon: Icons.history,
+            color: Theme.of(context).colorScheme.inversePrimary,
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const MyOrderPage()));
+            },
           ),
           CustomDrawerTile(
             text: "Settings",

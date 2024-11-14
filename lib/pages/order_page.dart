@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:uasppb_2021130007/components/bon_pembayaran.dart';
 import 'package:uasppb_2021130007/components/custom_button.dart';
 import 'package:uasppb_2021130007/models/resto.dart';
 import 'package:uasppb_2021130007/pages/home_page.dart';
+import 'package:uasppb_2021130007/services/auth/login_or_register.dart';
 import 'package:uasppb_2021130007/services/database/firestore.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +22,17 @@ class _OrderPageState extends State<OrderPage> {
   void initState() {
     super.initState();
 
-    firestoreService.saveOrder(context.read<Resto>());
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      firestoreService.saveOrder(context.read<Resto>());
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LoginOrRegister(),
+        ),
+      );
+    }
   }
 
   @override
