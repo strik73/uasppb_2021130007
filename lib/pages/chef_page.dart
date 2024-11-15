@@ -163,10 +163,14 @@ class _ChefPageState extends State<ChefPage> {
                   ),
                 ],
               ),
-              trailing: IconButton(
-                icon: const Icon(Icons.check_box_outlined),
-                color: Colors.green,
-                iconSize: 45,
+              trailing: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                ),
+                child: const Text('Complete',
+                    style: TextStyle(color: Colors.white)),
                 onPressed: () async {
                   showDialog(
                     context: context,
@@ -191,7 +195,6 @@ class _ChefPageState extends State<ChefPage> {
                                 'status': 'Completed',
                               });
 
-                              // Reset and reload all orders
                               setState(() {
                                 _orders = [];
                                 _lastDocument = null;

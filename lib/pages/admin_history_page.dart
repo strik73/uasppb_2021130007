@@ -27,7 +27,10 @@ class _AdminHistoryPageState extends State<AdminHistoryPage> {
             padding: const EdgeInsets.all(16.0),
             child: TextField(
               decoration: InputDecoration(
-                hintText: 'Search by name or order ID',
+                hintText: 'Search by name or order ID...',
+                hintStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -77,7 +80,7 @@ class _AdminHistoryPageState extends State<AdminHistoryPage> {
                       color: Theme.of(context).colorScheme.secondary,
                       child: ListTile(
                         title: Text(
-                          'ORDER #${orders[index].id}',
+                          '#${orders[index].id}',
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         subtitle: Column(
