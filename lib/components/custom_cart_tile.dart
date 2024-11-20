@@ -5,10 +5,17 @@ import 'package:uasppb_2021130007/models/cart_item.dart';
 import 'package:uasppb_2021130007/models/resto.dart';
 import 'package:intl/intl.dart';
 
-class CustomCartTile extends StatelessWidget {
+class CustomCartTile extends StatefulWidget {
   const CustomCartTile({super.key, required this.cartItem});
 
   final CartItem cartItem;
+
+  @override
+  State<CustomCartTile> createState() => _CustomCartTileState();
+}
+
+class _CustomCartTileState extends State<CustomCartTile> {
+  String? fullPath;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +36,12 @@ class CustomCartTile extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.asset(cartItem.food.imagePath,
-                  height: 100, width: 100, fit: BoxFit.cover),
+              child: Image.network(
+                widget.cartItem.food.imagePath,
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(width: 10),
             Expanded(
@@ -38,12 +49,12 @@ class CustomCartTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    cartItem.food.name,
+                    widget.cartItem.food.name,
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 15),
                   Text(
-                    '${cartItem.quantity} x ${currencyFormatter.format(cartItem.food.price)}',
+                    '${widget.cartItem.quantity} x ${currencyFormatter.format(widget.cartItem.food.price)}',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
@@ -55,13 +66,13 @@ class CustomCartTile extends StatelessWidget {
             SizedBox(
               height: 45,
               child: QtySelector(
-                qty: cartItem.quantity,
-                food: cartItem.food,
+                qty: widget.cartItem.quantity,
+                food: widget.cartItem.food,
                 onDecrement: () {
-                  resto.removeFromCart(cartItem);
+                  resto.removeFromCart(widget.cartItem);
                 },
                 onIncrement: () {
-                  resto.addToCart(cartItem.food);
+                  resto.addToCart(widget.cartItem.food);
                 },
               ),
             ),

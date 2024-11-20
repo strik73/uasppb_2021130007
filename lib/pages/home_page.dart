@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage>
     super.initState();
     _tabController =
         TabController(length: FoodCategory.values.length, vsync: this);
+    Provider.of<Resto>(context, listen: false).fetchMenu();
   }
 
   @override

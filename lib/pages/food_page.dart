@@ -15,6 +15,8 @@ class FoodPage extends StatefulWidget {
 }
 
 class _FoodPageState extends State<FoodPage> {
+  String? fullPath;
+
   final currencyFormatter = NumberFormat.currency(
     locale: 'id_ID',
     symbol: 'Rp ',
@@ -35,10 +37,10 @@ class _FoodPageState extends State<FoodPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
+                Image.network(
                   widget.food.imagePath,
+                  width: double.infinity,
                   height: 300,
-                  width: 500,
                   fit: BoxFit.cover,
                 ),
                 Padding(

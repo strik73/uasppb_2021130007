@@ -1,5 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+   <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+
     <application
+        android:requestLegacyExternalStorage="true"
         android:label="uasppb_2021130007"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
@@ -42,4 +47,5 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+
 </manifest>

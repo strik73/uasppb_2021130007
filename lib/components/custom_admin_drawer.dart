@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+// import 'package:uasppb_2021130007/pages/add_menu_page.dart';
 import 'package:uasppb_2021130007/pages/admin_history_page.dart';
+import 'package:uasppb_2021130007/pages/admin_manage_menu.dart';
 import 'package:uasppb_2021130007/pages/admin_page.dart';
 import 'package:uasppb_2021130007/services/auth/auth_service.dart';
 import 'package:uasppb_2021130007/components/custom_drawer_tile.dart';
@@ -76,6 +78,19 @@ class CustomAdminDrawer extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const AdminHistoryPage(),
+                ),
+              );
+            },
+          ),
+          CustomDrawerTile(
+            text: "Manage Menu",
+            icon: Icons.menu,
+            color: Theme.of(context).colorScheme.inversePrimary,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AdminManageMenu(),
                 ),
               );
             },
