@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uasppb_2021130007/models/food.dart';
 import 'package:intl/intl.dart';
+import 'dart:io';
 
 class FoodTile extends StatefulWidget {
   const FoodTile({super.key, required this.food, required this.onTap});
@@ -14,6 +15,14 @@ class FoodTile extends StatefulWidget {
 
 class _FoodTileState extends State<FoodTile> {
   String? fullPath;
+
+  @override
+  void initState() {
+    super.initState();
+    HttpClient client = HttpClient();
+    client.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+  }
 
   @override
   Widget build(BuildContext context) {

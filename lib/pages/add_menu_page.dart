@@ -43,7 +43,7 @@ class _AddMenuPageState extends State<AddMenuPage> {
       setState(() {
         _imageFile = File(pickedFile.path);
         _existingImageUrl =
-            null; // Clear existing image URL when new image is picked
+            null; //clear existing image URL when new image is picked
       });
     }
   }

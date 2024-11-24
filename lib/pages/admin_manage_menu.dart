@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:uasppb_2021130007/components/custom_button.dart';
 import 'package:uasppb_2021130007/pages/add_menu_page.dart';
 import 'package:uasppb_2021130007/models/food.dart';
+import 'dart:io';
 
 class AdminManageMenu extends StatefulWidget {
   const AdminManageMenu({super.key});
@@ -13,7 +14,13 @@ class AdminManageMenu extends StatefulWidget {
 }
 
 class _AdminManageMenuState extends State<AdminManageMenu> {
-  String? fullPath;
+  @override
+  void initState() {
+    super.initState();
+    HttpClient client = HttpClient();
+    client.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+  }
 
   final currencyFormatter = NumberFormat.currency(
     locale: 'id_ID',
@@ -99,53 +106,59 @@ class _AdminManageMenuState extends State<AdminManageMenu> {
                   groupedFoods[food.category]!.add(food);
                 }
 
-                return ListView.builder(
-                  itemCount: groupedFoods.length,
-                  itemBuilder: (context, index) {
-                    FoodCategory category = groupedFoods.keys.elementAt(index);
-                    List<Food> foods = groupedFoods[category]!;
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListView.builder(
+                    itemCount: groupedFoods.length,
+                    itemBuilder: (context, index) {
+                      FoodCategory category =
+                          groupedFoods.keys.elementAt(index);
+                      List<Food> foods = groupedFoods[category]!;
 
-                    return ExpansionTile(
-                      title: Text(category.toString().split('.').last),
-                      children: foods
-                          .map((food) => ListTile(
-                                leading: Image.network(
-                                  food.imagePath,
-                                  width: 50,
-                                  height: 50,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) =>
-                                      const Icon(Icons.error),
-                                ),
-                                title: Text(food.name),
-                                subtitle:
-                                    Text(currencyFormatter.format(food.price)),
-                                trailing: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    IconButton(
-                                      icon: const Icon(Icons.edit),
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => AddMenuPage(
-                                                  foodToEdit: food)),
-                                        );
-                                      },
-                                    ),
-                                    IconButton(
-                                      icon: const Icon(Icons.delete),
-                                      onPressed: () {
-                                        deleteFood(food);
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ))
-                          .toList(),
-                    );
-                  },
+                      return ExpansionTile(
+                        title: Text(category.toString().split('.').last),
+                        children: foods
+                            .map((food) => ListTile(
+                                  leading: Image.network(
+                                    food.imagePath,
+                                    width: 50,
+                                    height: 50,
+                                    fit: BoxFit.cover,
+                                    errorBuilder:
+                                        (context, error, stackTrace) =>
+                                            const Icon(Icons.error),
+                                  ),
+                                  title: Text(food.name),
+                                  subtitle: Text(
+                                      currencyFormatter.format(food.price)),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      IconButton(
+                                        icon: const Icon(Icons.edit),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AddMenuPage(
+                                                        foodToEdit: food)),
+                                          );
+                                        },
+                                      ),
+                                      IconButton(
+                                        icon: const Icon(Icons.delete),
+                                        onPressed: () {
+                                          deleteFood(food);
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ))
+                            .toList(),
+                      );
+                    },
+                  ),
                 );
               },
             ),

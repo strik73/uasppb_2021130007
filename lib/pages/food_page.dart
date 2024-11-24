@@ -4,6 +4,7 @@ import 'package:uasppb_2021130007/components/custom_button.dart';
 import 'package:uasppb_2021130007/models/food.dart';
 import 'package:uasppb_2021130007/models/resto.dart';
 import 'package:provider/provider.dart';
+import 'dart:io';
 
 class FoodPage extends StatefulWidget {
   const FoodPage({super.key, required this.food});
@@ -15,7 +16,13 @@ class FoodPage extends StatefulWidget {
 }
 
 class _FoodPageState extends State<FoodPage> {
-  String? fullPath;
+  @override
+  void initState() {
+    super.initState();
+    HttpClient client = HttpClient();
+    client.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+  }
 
   final currencyFormatter = NumberFormat.currency(
     locale: 'id_ID',

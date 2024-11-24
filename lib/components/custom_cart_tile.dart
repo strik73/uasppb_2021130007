@@ -4,6 +4,7 @@ import 'package:uasppb_2021130007/components/qty_selector.dart';
 import 'package:uasppb_2021130007/models/cart_item.dart';
 import 'package:uasppb_2021130007/models/resto.dart';
 import 'package:intl/intl.dart';
+import 'dart:io';
 
 class CustomCartTile extends StatefulWidget {
   const CustomCartTile({super.key, required this.cartItem});
@@ -15,7 +16,13 @@ class CustomCartTile extends StatefulWidget {
 }
 
 class _CustomCartTileState extends State<CustomCartTile> {
-  String? fullPath;
+  @override
+  void initState() {
+    super.initState();
+    HttpClient client = HttpClient();
+    client.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+  }
 
   @override
   Widget build(BuildContext context) {
