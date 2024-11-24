@@ -31,10 +31,10 @@ class CustomAdminDrawer extends StatelessWidget {
             child: Column(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(25),
+                  borderRadius: BorderRadius.circular(20),
                   child: Image.asset(
-                    'lib/images/decafe.jpg',
-                    height: 100,
+                    'lib/images/cashier_logo.png',
+                    height: 80,
                   ),
                 ),
                 const SizedBox(height: 10),

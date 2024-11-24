@@ -70,9 +70,17 @@ class _AdminManageMenuState extends State<AdminManageMenu> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Manage Menu'),
+        centerTitle: true,
       ),
       body: Column(
         children: [
+          Divider(
+            color: Colors.grey[400],
+            thickness: 1,
+            indent: 25,
+            endIndent: 25,
+          ),
+          const SizedBox(height: 12),
           CustomButton(
             text: 'Add New Item',
             onTap: () {

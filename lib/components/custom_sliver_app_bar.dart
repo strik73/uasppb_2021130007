@@ -45,7 +45,7 @@ class CustomSliverAppBar extends StatelessWidget {
             ),
           ),
         ],
-        title: Text("Food Order App"),
+        title: Text("De'Cafe"),
         centerTitle: true,
         flexibleSpace: FlexibleSpaceBar(
           background: Padding(

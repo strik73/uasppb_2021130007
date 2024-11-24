@@ -29,7 +29,7 @@ class CustomChefDrawer extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(25),
                   child: Image.asset(
-                    'lib/images/decafe.jpg',
+                    'lib/images/chef_logo.png',
                     height: 100,
                   ),
                 ),

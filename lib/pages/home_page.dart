@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage>
                   indent: 25,
                   endIndent: 25,
                   color: Theme.of(context).colorScheme.inversePrimary,
-                  thickness: 2,
+                  thickness: 1,
                 ),
                 //table number
                 CustomTableNumber(),
