@@ -41,29 +41,34 @@ class _OrderPageState extends State<OrderPage> {
       appBar: AppBar(
         title: const Text("Order in progress"),
       ),
-      body: Column(
-        children: [
-          const BonPembayaran(),
-          const SizedBox(
-            height: 20,
-          ),
-          Consumer<Resto>(
-            builder: (context, resto, child) {
-              return CustomButton(
-                onTap: () {
-                  resto.clearCart();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomePage(),
-                    ),
-                  );
-                },
-                text: 'Kembali',
-              );
-            },
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const BonPembayaran(),
+            const SizedBox(
+              height: 20,
+            ),
+            Consumer<Resto>(
+              builder: (context, resto, child) {
+                return CustomButton(
+                  onTap: () {
+                    resto.clearCart();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      ),
+                    );
+                  },
+                  text: 'Kembali',
+                );
+              },
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
       ),
     );
   }

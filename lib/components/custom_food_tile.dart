@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uasppb_2021130007/models/food.dart';
 import 'package:intl/intl.dart';
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class FoodTile extends StatefulWidget {
   const FoodTile({super.key, required this.food, required this.onTap});
@@ -44,21 +45,20 @@ class _FoodTileState extends State<FoodTile> {
                 //gambar makanan
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
-                    widget.food.imagePath,
+                  child: CachedNetworkImage(
+                    imageUrl: widget.food.imagePath,
                     height: 90,
                     width: 90,
                     fit: BoxFit.cover,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    },
+                    placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
                 SizedBox(width: 12),
-                //deskripsii makanan
+                //deskripsi makanan
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,12 +78,13 @@ class _FoodTileState extends State<FoodTile> {
                             color: Theme.of(context).colorScheme.tertiary,
                             fontWeight: FontWeight.bold),
                       ),
+                      //formatted price
                       Text(
                         currencyFormatter.format(widget.food.price),
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
                             fontWeight: FontWeight.bold),
-                      ), // Formatted price
+                      ),
                     ],
                   ),
                 ),

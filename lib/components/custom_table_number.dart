@@ -81,8 +81,7 @@ class CustomTableNumber extends StatelessWidget {
               onTap: () => openTableSearch(context),
               child: Center(
                 child: Row(
-                  mainAxisSize:
-                      MainAxisSize.min, // This helps keep the Row centered
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Consumer<Resto>(builder: (context, resto, child) {
                       return Text(

@@ -15,7 +15,7 @@ class Food {
   final String description;
   final FoodCategory category;
 
-  // Add factory constructor for Firebase
+  //add factory constructor for Firebase
   factory Food.fromFirestore(Map<String, dynamic> data, {String? docId}) {
     return Food(
       id: docId ?? '',

@@ -89,8 +89,6 @@ class CartPage extends StatelessWidget {
                 ],
               ),
             ),
-
-            // Checkout Button
             CustomButton(
               text: "Bayar Sekarang",
               onTap: () {

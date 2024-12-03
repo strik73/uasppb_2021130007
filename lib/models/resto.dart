@@ -10,7 +10,7 @@ class Resto extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   List<Food> _menu = [];
 
-  // Add this method to fetch foods
+  //method to fetch foods
   Future<void> fetchMenu() async {
     try {
       final snapshot = await _firestore.collection('foods').get();
@@ -23,14 +23,19 @@ class Resto extends ChangeNotifier {
   }
 
   String? customerName;
+  String _tableNumber = '1';
+  String? paymentMethod;
 
   void setCustomerName(String name) {
     customerName = name;
     notifyListeners();
   }
 
-  //ubah nomor meja
-  String _tableNumber = '1';
+  void setPaymentMethod(String payment) {
+    paymentMethod = payment;
+    notifyListeners();
+  }
+
   //getter
   List<Food> get menu => _menu;
   List<CartItem> get cart => _cart;
@@ -89,10 +94,23 @@ class Resto extends ChangeNotifier {
     notifyListeners();
   }
 
-  //ubah nomor meja
   void setTableNumber(String tableNumber) {
     _tableNumber = tableNumber;
     notifyListeners();
+  }
+
+  //metode pembayaran
+  String getPaymentInstructions() {
+    switch (paymentMethod) {
+      case 'Cash':
+        return "Please pay at the cashier counter.";
+      case 'Transfer Bank':
+        return "BANK";
+      case 'Qris':
+        return "QRIS";
+      default:
+        return "";
+    }
   }
 
   //bon pembayaran
@@ -111,6 +129,7 @@ class Resto extends ChangeNotifier {
     if (customerName != null && customerName!.isNotEmpty) {
       bon.writeln("Customer: $customerName");
       bon.writeln("Table: $tableNumber");
+      bon.writeln("Payment Method: $paymentMethod");
       bon.writeln();
     }
 

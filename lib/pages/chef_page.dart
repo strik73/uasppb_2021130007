@@ -101,30 +101,6 @@ class _ChefPageState extends State<ChefPage> {
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 2),
-                  Text(
-                    'Order Time: ${order['orderDate'] != null ? DateFormat('HH:mm | dd-MM-yyyy').format((order['orderDate'] as Timestamp).toDate()) : 'N/A'}',
-                  ),
-                  const SizedBox(height: 8),
-                  Text('Customer: ${order['customerName'] ?? 'N/A'}'),
-                  Text('Table Number: ${order['tableNumber'] ?? 'N/A'}'),
-                  const SizedBox(height: 8),
-                  if (order['items'] != null)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Ordered Items:',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        ...List.from(order['items']).map((item) => Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child:
-                                  Text('${item['name']} x${item['quantity']}'),
-                            )),
-                      ],
-                    ),
-                  const SizedBox(height: 8),
                   Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -161,56 +137,80 @@ class _ChefPageState extends State<ChefPage> {
                       ),
                     ),
                   ),
-                ],
-              ),
-              trailing: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                ),
-                child: const Text('Complete',
-                    style: TextStyle(color: Colors.white)),
-                onPressed: () async {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: const Text('Confirmation'),
-                        content: const Text(
-                            'Are you sure you want to complete this order?'),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text('Cancel'),
-                          ),
-                          TextButton(
-                            onPressed: () async {
-                              await FirebaseFirestore.instance
-                                  .collection('orders')
-                                  .doc(_orders[index].id)
-                                  .update({
-                                'status': 'Completed',
-                              });
+                  const SizedBox(height: 2),
+                  Text(
+                    'Order Time: ${order['orderDate'] != null ? DateFormat('HH:mm | dd-MM-yyyy').format((order['orderDate'] as Timestamp).toDate()) : 'N/A'}',
+                  ),
+                  const SizedBox(height: 8),
+                  Text('Customer: ${order['customerName'] ?? 'N/A'}'),
+                  Text('Table Number: ${order['tableNumber'] ?? 'N/A'}'),
+                  const SizedBox(height: 8),
+                  if (order['items'] != null)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Ordered Items:',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        ...List.from(order['items']).map((item) => Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child:
+                                  Text('${item['name']} x${item['quantity']}'),
+                            )),
+                      ],
+                    ),
+                  const SizedBox(height: 8),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
+                    ),
+                    child: const Text('Complete',
+                        style: TextStyle(color: Colors.white)),
+                    onPressed: () async {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text('Confirmation'),
+                            content: const Text(
+                                'Are you sure you want to complete this order?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () async {
+                                  await FirebaseFirestore.instance
+                                      .collection('orders')
+                                      .doc(_orders[index].id)
+                                      .update({
+                                    'status': 'Completed',
+                                  });
 
-                              setState(() {
-                                _orders = [];
-                                _lastDocument = null;
-                                _hasMore = true;
-                              });
+                                  setState(() {
+                                    _orders = [];
+                                    _lastDocument = null;
+                                    _hasMore = true;
+                                  });
 
-                              await _loadMoreOrders();
-                              Navigator.pop(context);
-                            },
-                            child: const Text('Yes'),
-                          ),
-                        ],
+                                  await _loadMoreOrders();
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('Yes'),
+                              ),
+                            ],
+                          );
+                        },
                       );
                     },
-                  );
-                },
+                  ),
+                ],
               ),
             ),
           );

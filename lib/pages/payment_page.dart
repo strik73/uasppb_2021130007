@@ -27,8 +27,12 @@ class _PaymentPageState extends State<PaymentPage> {
       );
       return;
     } else {
+      //setter for database
       Provider.of<Resto>(context, listen: false)
           .setCustomerName(_nameController.text);
+      Provider.of<Resto>(context, listen: false)
+          .setPaymentMethod(_selectedPayment);
+      //validasi form
       if (formKey.currentState!.validate()) {
         showDialog(
           context: context,
@@ -68,7 +72,6 @@ class _PaymentPageState extends State<PaymentPage> {
         );
       }
     }
-    // Navigate to the next screen or perform payment processing here
   }
 
   @override

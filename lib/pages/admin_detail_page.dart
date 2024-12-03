@@ -64,7 +64,7 @@ class AdminDetailPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                //Order items and price
+                //order items and price
                 Expanded(
                   child: Container(
                     padding: const EdgeInsets.all(16),

@@ -53,6 +53,28 @@ class _AddMenuPageState extends State<AddMenuPage> {
 
     setState(() => _isLoading = true);
     try {
+      // Normalize the input name by removing spaces and converting to lowercase
+      final normalizedName =
+          _nameController.text.toLowerCase().replaceAll(' ', '');
+
+      // Get all menu items
+      final menuItems =
+          await FirebaseFirestore.instance.collection('foods').get();
+
+      // Check for duplicates by comparing normalized names
+      final isDuplicate = widget.foodToEdit != null
+          ? menuItems.docs.any((doc) =>
+              doc.data()['name'].toString().toLowerCase().replaceAll(' ', '') ==
+                  normalizedName &&
+              doc.id != widget.foodToEdit!.id)
+          : menuItems.docs.any((doc) =>
+              doc.data()['name'].toString().toLowerCase().replaceAll(' ', '') ==
+              normalizedName);
+
+      if (isDuplicate) {
+        throw Exception('A menu item with this name already exists');
+      }
+
       String finalImageUrl = _existingImageUrl ?? '';
 
       if (_imageFile != null) {

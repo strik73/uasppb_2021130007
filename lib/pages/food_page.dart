@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:uasppb_2021130007/components/custom_button.dart';
 import 'package:uasppb_2021130007/models/food.dart';
 import 'package:uasppb_2021130007/models/resto.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
 
@@ -44,8 +45,8 @@ class _FoodPageState extends State<FoodPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.network(
-                  widget.food.imagePath,
+                CachedNetworkImage(
+                  imageUrl: widget.food.imagePath,
                   width: double.infinity,
                   height: 300,
                   fit: BoxFit.cover,

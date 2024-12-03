@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uasppb_2021130007/components/qty_selector.dart';
@@ -43,8 +44,8 @@ class _CustomCartTileState extends State<CustomCartTile> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                widget.cartItem.food.imagePath,
+              child: CachedNetworkImage(
+                imageUrl: widget.cartItem.food.imagePath,
                 width: 100,
                 height: 100,
                 fit: BoxFit.cover,

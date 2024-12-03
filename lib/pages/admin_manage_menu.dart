@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -127,14 +128,16 @@ class _AdminManageMenuState extends State<AdminManageMenu> {
                         title: Text(category.toString().split('.').last),
                         children: foods
                             .map((food) => ListTile(
-                                  leading: Image.network(
-                                    food.imagePath,
+                                  leading: CachedNetworkImage(
+                                    imageUrl: food.imagePath,
                                     width: 50,
                                     height: 50,
                                     fit: BoxFit.cover,
-                                    errorBuilder:
-                                        (context, error, stackTrace) =>
-                                            const Icon(Icons.error),
+                                    placeholder: (context, url) => const Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
                                   ),
                                   title: Text(food.name),
                                   subtitle: Text(
